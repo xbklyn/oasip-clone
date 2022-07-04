@@ -59,7 +59,7 @@
         <button
           class="w-28 h-10 bg-white font-light grid place-items-center border border-green-600 text-green-600 hover:bg-gradient-to-tl to-emerald-400 from-lime-500 hover:border-none hover:text-white hover:border-2 duration-150"
         >
-          <p>Book now</p>
+          <p class="text-base md:text-xs">Book now</p>
         </button>
       </router-link>
 
@@ -80,10 +80,13 @@
     </div>
 
     <!-- Mobile Navigation -->
-    <div class="md:hidden flex  items-center justify-self-end mr-24 h-24">
-      <button class="flex gap-x-2 outline-none mobile-menu-button hover:text-blue-400 ease-out duration-150 p-1">
+    <div class="md:hidden flex items-center justify-self-end mr-24 h-24">
+      <button
+        @click="toggleMenu"
+        class="flex gap-x-2 outline-none mobile-menu-button hover:text-blue-400 ease-out duration-150 p-1"
+      >
         <svg
-          class=" w-6 h-6"
+          class="w-6 h-6"
           x-show="!showMenu"
           fill="none"
           stroke-linecap="round"
@@ -97,9 +100,44 @@
         <p>Menu</p>
       </button>
     </div>
+
+    <!-- Mobile menu -->
+    <div class="hidden md:hidden mobile-menu col-span-2 w-full border border-red-500">
+          <!-- Dashboard -->
+          <div
+            class="grid place-items-center l-color-navi h-12 border border-blue-400 "
+          >
+            <router-link
+              class="hover:text-blue-400 ease-out duration-150"
+              :to="{ name: 'Home' }"
+            >
+              Dashboard
+            </router-link>
+          </div>
+          <!-- Schedule -->
+          <div
+            class="grid place-items-center l-color-navi h-12"
+          >
+            <router-link
+              :to="{ name: 'Schedule' }"
+              class="hover:text-blue-400 ease-out duration-150"
+            >
+              Schedule
+            </router-link>
+          </div>
+    </div>
   </nav>
 </template>
 
-<script setup></script>
+<script setup>
+
+// Responsive Section
+const toggleMenu = () => {
+  const menu = document.querySelector("div.mobile-menu")
+  console.log(menu);
+  menu.classList.toggle('hidden')
+}
+
+</script>
 
 <style lang="scss" scoped></style>
