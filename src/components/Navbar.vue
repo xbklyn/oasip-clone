@@ -15,7 +15,7 @@
 
     <!-- Main Div -->
     <div
-      class="hidden md:flex space-x-12 text-xs font-light justify-start place-items-center"
+      class="hidden md:flex space-x-1 md:space-x-3 lg:space-x-8 text-xs font-light justify-start place-items-center"
     >
       <!-- Dashboard -->
       <div
@@ -52,22 +52,25 @@
       </div>
     </div>
 
-    <!-- Manage Div -->
-    <div class="hidden md:grid grid-cols-2 gap-x-12 justify-self-end mr-24">
+    <!-- Booking and Manage Div -->
+    <div class="hidden md:grid grid-cols-2 gap-x-5 justify-self-end ">
+
       <!-- Booking` -->
-      <router-link :to="{ name: 'Booking' }" class="flex place-items-center">
+      <router-link :to="{ name: 'Booking' }" class="flex place-items-center justify-self-end">
         <button
-          class="w-28 h-10 bg-white font-light grid place-items-center border border-green-600 text-green-600 hover:bg-gradient-to-tl to-emerald-400 from-lime-500 hover:border-none hover:text-white hover:border-2 duration-150"
+          class="w-20 lg:w-28 h-10 bg-white font-light grid place-items-center border border-green-600 text-green-600 hover:bg-gradient-to-tl to-emerald-400 from-lime-500 hover:border-none hover:text-white hover:border-2 duration-150"
         >
           <p class="text-base md:text-xs">Book now</p>
         </button>
       </router-link>
 
       <!-- Management -->
-      <router-link :to="{ name: 'Manage' }" class="flex place-items-center">
+      <router-link :to="{ name: 'Manage' }" 
+        class="flex place-items-center">
         <button
           class="flex gap-x-1 w-28 h-10 text-sm font-light place-items-center text-blue-600 duration-150 hover:text-blue-300"
         >
+          <!-- Hamburger Icon -->
           <svg width="1em" height="1em" viewBox="0 0 24 24">
             <path
               fill="currentColor"
@@ -83,7 +86,7 @@
     <div class="md:hidden flex items-center justify-self-end mr-24 h-24">
       <button
         @click="toggleMenu"
-        class="flex gap-x-2 outline-none mobile-menu-button hover:text-blue-400 ease-out duration-150 p-1"
+        class="flex gap-x-2 outline-none mobile-menu-button hover:text-blue-400 ease-out duration-150 p-1 hover:skew-x-6"
       >
         <svg
           class="w-6 h-6"
@@ -102,30 +105,33 @@
     </div>
 
     <!-- Mobile menu -->
-    <div class="hidden md:hidden mobile-menu col-span-2 w-full border border-red-500">
+    <div class="hidden md:hidden mobile-menu col-span-2 w-full text-sm">
           <!-- Dashboard -->
           <div
-            class="grid place-items-center l-color-navi h-12 border border-blue-400 "
+            class="grid justify-center items-center l-color-navi h-14"
           >
             <router-link
-              class="hover:text-blue-400 ease-out duration-150"
+              class="text-white hover:text-blue-400 ease-out duration-150"
               :to="{ name: 'Home' }"
+              @click="toggleMenu"
             >
               Dashboard
             </router-link>
           </div>
           <!-- Schedule -->
           <div
-            class="grid place-items-center l-color-navi h-12"
+            class="grid place-items-center l-color-navi h-14"
           >
             <router-link
               :to="{ name: 'Schedule' }"
-              class="hover:text-blue-400 ease-out duration-150"
+              class="text-white hover:text-blue-400 ease-out duration-150"
+              @click="toggleMenu"
             >
               Schedule
             </router-link>
           </div>
     </div>
+
   </nav>
 </template>
 
@@ -134,10 +140,28 @@
 // Responsive Section
 const toggleMenu = () => {
   const menu = document.querySelector("div.mobile-menu")
-  console.log(menu);
   menu.classList.toggle('hidden')
 }
 
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.mobile-menu {
+  background: linear-gradient(45deg, #489dff, #489dff, #783eff, #783eff, #c640ff, #c640ff, #783eff, #783eff, #489dff, #489dff);
+  background-size: 1000% 1000%;
+  animation: gradient 24s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}</style>
